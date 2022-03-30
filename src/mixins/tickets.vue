@@ -10,7 +10,7 @@
     methods: {
       getTickets() {
         return new Promise((resolve, reject) => {
-          axios('http://taskapi.digitalsliven.com/api/tickets', {
+          axios('http://taskapi.digitalsliven.com/api/categories', {
             method: 'GET'
           })
             .then(res => {

@@ -25,7 +25,6 @@
             data: data
           })
             .then(res => {
-              debugger;
               let authToken = res.data.token;
               axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
               localStorage.setItem('auth-token', authToken);
@@ -36,6 +35,11 @@
               reject(err);
             })
         })
+      },
+      logout() {
+        localStorage.setItem('auth-token', null);
+        authStore.setToken(null);
+        this.$router.push('/login');
       }
     }
   }

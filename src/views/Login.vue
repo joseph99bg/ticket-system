@@ -57,7 +57,7 @@
 
         this.login(dataToSend)
           .then(() => {
-            this.$router.push('/tickets');
+            this.$router.push('/my-profile');
           })
           .catch(err => {
             this.errors = err.response.data.errors;
