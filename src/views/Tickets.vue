@@ -1,6 +1,31 @@
 <template>
   <div class="tickets">
-    Tickets
+    <h1>Tickets</h1>
+    <div class="tickets-list">
+      <div
+        v-for="ticket in tickets"
+        :key="ticket.id"
+        class="ticket"
+      >
+        <button @click="completeTaskHandler(ticket)">
+          <span v-if="ticket.status == 0">
+            Complete
+          </span>
+          <span v-else>
+            Incomplete
+          </span>
+        </button>
+        <span class="status">
+          {{ticket.status | statusFormat}}
+        </span>
+        <span class="ticket-name">
+          {{ticket.description}}
+        </span>
+        <span class="ticket-date">
+          {{ticket.created_at | formatDate}}
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -10,9 +35,51 @@
   export default {
     name: 'Tickets',
     mixins: [ticketsMixin],
+    data() {
+      return {
+        tickets: null
+      }
+    },
     methods: {
       getTicketsHandler() {
-        this.getTickets();
+        this.getTickets()
+          .then(res => {
+            this.tickets = res.data.tickets;
+          })
+      },
+      completeTaskHandler(ticket) {
+        let dataToSend = {};
+
+        if (ticket.status == 0) {
+          dataToSend.status = 1;
+        } else {
+          dataToSend.status = 0;
+        }
+
+        this.changeTicketStatus(ticket.id, dataToSend)
+          .then(() => {
+            this.getTicketsHandler();
+          })
+      }
+    },
+    filters: {
+      formatDate(dateInput) {
+        let date = new Date(dateInput);
+        
+        let day = date.getDate();
+        let month = date.getMonth();
+        let year = date.getFullYear();
+
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        return `${months[month]} ${day}, ${year}`
+      },
+      statusFormat(status) {
+        if (status == 0) {
+          return 'Incompleted';
+        } else {
+          return 'Completed';
+        }
       }
     },
     mounted() {

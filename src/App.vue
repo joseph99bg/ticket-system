@@ -2,6 +2,8 @@
   <div id="app">
     <router-link to="/">Register</router-link>
     <router-link to="/login">Login</router-link>
+    <router-link to="/my-profile">My Profile</router-link>
+    <router-link to="/tickets">Tickets</router-link>
     <router-view/>
   </div>
 </template>
