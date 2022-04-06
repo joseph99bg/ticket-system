@@ -9,6 +9,18 @@ import router from './router'
   // * Vuelidate END
 // * Libraries END
 
+Vue.filter('formatDate', (dateInput) => {
+  let date = new Date(dateInput);
+  
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  return `${months[month]} ${day}, ${year}`
+})
+
 Vue.config.productionTip = false
 
 new Vue({
