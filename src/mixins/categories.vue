@@ -35,6 +35,20 @@
             })
         })
       },
+      editCategory(categoryId, data) {
+        return new Promise((resolve, reject) => {
+          axios(`http://taskapi.digitalsliven.com/api/categories/${categoryId}`, {
+            method: 'PATCH',
+            data: data
+          })
+            .then(res => {
+              resolve(res);
+            })
+            .catch(err => {
+              reject(err);
+            })
+        })
+      },
       deleteCategory(categoryId) {
         return new Promise((resolve, reject) => {
           axios(`http://taskapi.digitalsliven.com/api/categories/${categoryId}`, {
