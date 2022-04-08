@@ -1,18 +1,44 @@
 <template>
   <div id="app">
-    <router-link to="/">Register</router-link>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/my-profile">My Profile</router-link>
-    <router-link to="/tickets">Tickets</router-link>
-    <router-link to="/categories">Categories</router-link>
-    <router-view/>
+    <!-- <Sidebar v-if="currentRoute != 'Login' && currentRoute != 'Register'"/> -->
+    <div class="content">
+      <router-link to="/">Register</router-link>
+      <router-link to="/login">Login</router-link>
+      <router-link to="/my-profile">My Profile</router-link>
+      <router-link to="/tickets">Tickets</router-link>
+      <router-link to="/categories">Categories</router-link>
+      <router-view/>
+    </div>
   </div>
 </template>
+
+<script>
+  import Sidebar from '@/components/Sidebar'
+
+  export default {
+    components: {
+      Sidebar
+    },
+    computed: {
+      currentRoute() {
+        return this.$route.name;
+      }
+    }
+  }
+</script>
 
 <style>
   * {
     box-sizing: border-box;
     font-family: 'Calibri';
+  }
+  body {
+    margin: 0;
+  }
+
+  #app {
+    display: flex;
+    min-height: 100vh;
   }
 
   a {
