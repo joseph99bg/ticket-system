@@ -28,7 +28,7 @@
             <td>{{category.description || '-'}}</td>
             <td>{{category.created_at | formatDate}}</td>
             <td>
-              <button @click="editCategoryHandler(category)">Edit</button>
+              <button @click="editCategoryHandler(category.id)">Edit</button>
               <button @click="deleteCategoryHandler(category.id)">Delete</button>
             </td>
           </tr>
@@ -44,7 +44,7 @@
 
     <EditCategory
       v-if="editItem"
-      :category="editItem"
+      :categoryId="+editItem"
       @close="editItem = null"
       @updated="updatedCategoryHandler"
     />
@@ -82,8 +82,8 @@
         this.newPopup = false;
         this.getCategoriesHandler();
       },
-      editCategoryHandler(category) {
-        this.editItem = category;
+      editCategoryHandler(categoryId) {
+        this.editItem = categoryId;
       },
       deleteCategoryHandler(categoryId) {
         this.deleteCategory(categoryId)

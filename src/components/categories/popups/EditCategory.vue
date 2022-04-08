@@ -1,5 +1,5 @@
 <template>
-  <div class="popup edit-category">
+  <div class="popup edit-category" v-if="editedCategory">
     <div class="popup-box">
       <div class="popup-header">
         <h4>Edit category</h4>
@@ -33,22 +33,28 @@
     name: 'EditCategory',
     mixins: [categoriesMixin],
     props: {
-      category: Object
+      categoryId: Number
     },
     data() {
       return {
-        editedCategory: { ...this.category }
+        editedCategory: null
       }
     },
     methods: {
       editCategoryHandler() {
         let dataToSend = { ...this.editedCategory };
 
-        this.editCategory(this.category.id, dataToSend)
+        this.editCategory(this.categoryId, dataToSend)
           .then(() => {
             this.$emit('updated');
           })
       }
+    },
+    mounted() {
+      this.getSingleCategory(this.categoryId)
+        .then(res => {
+          this.editedCategory = res.data.category;
+        })
     }
   }
 </script>

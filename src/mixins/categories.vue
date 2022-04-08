@@ -21,6 +21,19 @@
             })
         })
       },
+      getSingleCategory(categoryId) {
+        return new Promise((resolve, reject) => {
+          axios(`http://taskapi.digitalsliven.com/api/categories/${categoryId}`, {
+            method: 'GET'
+          })
+            .then(res => {
+              resolve(res);
+            })
+            .catch(err => {
+              reject(err);
+            })
+        })
+      },
       createCategory(data) {
         return new Promise((resolve, reject) => {
           axios('http://taskapi.digitalsliven.com/api/categories', {
