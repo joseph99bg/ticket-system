@@ -8,6 +8,8 @@
         class="ticket"
       >
         <button @click="completeTaskHandler(ticket)">
+          <font-awesome-icon v-if="ticket.status == 0" icon="fa-solid fa-check" />
+          <font-awesome-icon v-else icon="fa-solid fa-times" />
           <span v-if="ticket.status == 0">
             Complete
           </span>
