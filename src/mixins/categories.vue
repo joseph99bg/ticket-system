@@ -10,7 +10,7 @@
     methods: {
       getCategories() {
         return new Promise((resolve, reject) => {
-          axios('http://taskapi.digitalsliven.com/api/categories', {
+          axios(`${process.env.VUE_APP_API_URL}/api/categories`, {
             method: 'GET'
           })
             .then(res => {
@@ -23,7 +23,7 @@
       },
       getSingleCategory(categoryId) {
         return new Promise((resolve, reject) => {
-          axios(`http://taskapi.digitalsliven.com/api/categories/${categoryId}`, {
+          axios(`${process.env.VUE_APP_API_URL}/api/categories/${categoryId}`, {
             method: 'GET'
           })
             .then(res => {
@@ -36,7 +36,7 @@
       },
       createCategory(data) {
         return new Promise((resolve, reject) => {
-          axios('http://taskapi.digitalsliven.com/api/categories', {
+          axios(`${process.env.VUE_APP_API_URL}/api/categories`, {
             method: 'POST',
             data: data
           })
@@ -50,7 +50,7 @@
       },
       editCategory(categoryId, data) {
         return new Promise((resolve, reject) => {
-          axios(`http://taskapi.digitalsliven.com/api/categories/${categoryId}`, {
+          axios(`${process.env.VUE_APP_API_URL}/api/categories/${categoryId}`, {
             method: 'PATCH',
             data: data
           })
@@ -64,7 +64,7 @@
       },
       deleteCategory(categoryId) {
         return new Promise((resolve, reject) => {
-          axios(`http://taskapi.digitalsliven.com/api/categories/${categoryId}`, {
+          axios(`${process.env.VUE_APP_API_URL}/api/categories/${categoryId}`, {
             method: 'DELETE'
           })
             .then(res => {

@@ -10,7 +10,7 @@
     methods: {
       getTickets() {
         return new Promise((resolve, reject) => {
-          axios('http://taskapi.digitalsliven.com/api/tickets', {
+          axios(`${process.env.VUE_APP_API_URL}/api/tickets`, {
             method: 'GET'
           })
             .then(res => {
@@ -23,7 +23,7 @@
       },
       changeTicketStatus(taskId, data) {
         return new Promise((resolve, reject) => {
-          axios(`http://taskapi.digitalsliven.com/api/tickets/complete/${taskId}`, {
+          axios(`${process.env.VUE_APP_API_URL}/api/tickets/complete/${taskId}`, {
             method: 'POST',
             data: data
           })

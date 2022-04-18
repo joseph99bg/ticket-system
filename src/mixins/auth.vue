@@ -6,7 +6,7 @@
     methods: {
       register(data) {
         return new Promise((resolve, reject) => {
-          axios('http://taskapi.digitalsliven.com/api/register', {
+          axios(`${process.env.VUE_APP_API_URL}/api/register`, {
             method: 'POST',
             data: data
           })
@@ -20,7 +20,7 @@
       },
       login(data) {
         return new Promise((resolve, reject) => {
-          axios('http://taskapi.digitalsliven.com/api/login', {
+          axios(`${process.env.VUE_APP_API_URL}/api/login`, {
             method: 'POST',
             data: data
           })

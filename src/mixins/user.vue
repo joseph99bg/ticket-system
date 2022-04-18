@@ -5,7 +5,7 @@
     methods: {
       getProfile() {
         return new Promise((resolve, reject) => {
-          axios('http://taskapi.digitalsliven.com/api/me', {
+          axios(`${process.env.VUE_APP_API_URL}/api/me`, {
             method: 'GET'
           })
             .then(res => {
@@ -18,7 +18,7 @@
       },
       editProfile(data) {
         return new Promise((resolve, reject) => {
-          axios('http://taskapi.digitalsliven.com/api/me', {
+          axios(`${process.env.VUE_APP_API_URL}/api/me`, {
             method: 'PATCH',
             data: data
           })
